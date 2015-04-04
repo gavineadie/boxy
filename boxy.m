@@ -162,19 +162,19 @@ int main (int argc, const char * argv[]) {
                         [line setString:@"/*┏" "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                          "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"];
                     }
+                    if (!inDottyBox && ([line rangeOfString:@"/*" "box."
+                                                    options:NSCaseInsensitiveSearch].length > 0 ||
+                                        [line rangeOfString:@"/*" "╭╌╌╌"].length > 0)) {
+                        inDottyBox = YES;
+                        [line setString:@"/*╭" "╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌"
+                         "╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮"];
+                    }
                     if (!inLightBox && ([line rangeOfString:@"/*" "box"
                                                     options:NSCaseInsensitiveSearch].length > 0 ||
                                         [line rangeOfString:@"/*" "┌───"].length > 0)) {
                         inLightBox = YES;
                         [line setString:@"/*┌" "─────────────────────────────────────────"
                          "─────────────────────────────────────────────────────────┐"];
-                    }
-                    if (!inDottyBox && ([line rangeOfString:@"/*" "box.."
-                                                    options:NSCaseInsensitiveSearch].length > 0 ||
-                                        [line rangeOfString:@"/*" "╭╌╌╌"].length > 0)) {
-                        inDottyBox = YES;
-                        [line setString:@"/*╭" "╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌"
-                         "╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮"];
                     }
 
                     [unfoldedString appendFormat:@"%@\n", line];
