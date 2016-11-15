@@ -27,7 +27,7 @@ Both `boxy` and `unboxy` take one parameter - the name of the file to be dolled 
 
 __NB: Since `boxy` and `unboxy` write over the file presented, it’s worth making a temporary copy in case you make a mistake.  Don’t say I didn’t warn you.__
 
-There are a few variations of the box style, double (`/*box=`), heavy (`/*box-`), normal and dotted (`/*box=.`).
+There are a few variations of the box style, double (`/*box=`), heavy (`/*box-`), normal and dotted (`/*box.`).
 
 There’s also `boxer` which changes local ascii-art boxes into really arty boxes, for example:
 
