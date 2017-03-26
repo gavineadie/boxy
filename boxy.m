@@ -17,9 +17,13 @@ int main (int argc, const char * argv[]) {
 
     @autoreleasepool {
 
-        NSError *           errorReport;
-        NSFileManager *     defaultFileManager = [NSFileManager defaultManager];
+        NSError *               errorReport;
+        NSFileManager *         defaultFileManager = [NSFileManager defaultManager];
 
+        NSRegularExpression *   expression =
+                        [NSRegularExpression regularExpressionWithPattern:@"\\[(.*)]"
+                                                                  options:NSRegularExpressionCaseInsensitive
+                                                                    error:&errorReport];
         if (argc > 1) {
             NSString *      filePath = @(argv[1]);
             if ([defaultFileManager fileExistsAtPath:filePath]) {
@@ -166,8 +170,23 @@ int main (int argc, const char * argv[]) {
                                                     options:NSCaseInsensitiveSearch].length > 0 ||
                                         [line rangeOfString:@"/*" "╭╌╌╌"].length > 0)) {
                         inDottyBox = YES;
-                        [line setString:@"/*╭" "╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌"
-                         "╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮"];
+
+                        NSArray<NSTextCheckingResult *> *   results =
+                                        [expression matchesInString:line options:0
+                                                              range:NSMakeRange(0, line.length)];
+                        if (results.count > 0) {
+                            NSRange     range = results.firstObject.range;
+                            NSString *  match = [line substringWithRange:range];
+                            [line setString:@"/*╭" "╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌"
+                             "╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮"];
+                            range.location = 100 - range.length;
+                            [line replaceCharactersInRange:range
+                                                withString:match];
+                        }
+                        else {
+                            [line setString:@"/*╭" "╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌"
+                             "╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮"];
+                        }
                     }
                     if (!inLightBox && ([line rangeOfString:@"/*" "box"
                                                     options:NSCaseInsensitiveSearch].length > 0 ||
