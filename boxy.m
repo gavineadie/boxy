@@ -10,7 +10,7 @@
   │     light                                                                                        │
   └──────────────────────────────────────────────────────────────────────────────────────────────────┘*/
 /*╭╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮
-  ╎     dotted                                                                                       ╎
+  ┆     dotted                                                                                       ┆
   ╰╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╯*/
 
 int main (int argc, const char * argv[]) {
@@ -146,9 +146,9 @@ int main (int argc, const char * argv[]) {
                     if (inDottyBox) {
                         CFStringPad((CFMutableStringRef)line, CFSTR(" "), 102, 0);
                         line = [[line stringByReplacingCharactersInRange:NSMakeRange(0,3)
-                                                              withString:@"  ╎"] mutableCopy];
+                                                              withString:@"  ┆"] mutableCopy];
                         line = [[line stringByReplacingCharactersInRange:NSMakeRange(101,1)
-                                                              withString:@"╎"] mutableCopy];
+                                                              withString:@"┆"] mutableCopy];
                     }
 
 

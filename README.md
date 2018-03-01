@@ -37,9 +37,9 @@ There’s also `boxer` which changes local ascii-art boxes into really arty boxe
 
 becomes:
 
-			┏━━━┓
-    		┃abc┃
-    		┗━━━┛
+         ┏━━━┓
+         ┃abc┃
+         ┗━━━┛
 		
 	
 
